@@ -1,0 +1,78 @@
+#type logement {
+#    reference : Int
+#    delegation : String
+#    adresse : String
+#    gouvernorat : String
+#    type : String
+#    description : String
+#    prix : Float
+#}
+#
+#type rendezVous {
+#    id : ID
+#    date : String
+#    heure : String
+#    logement : logement
+#    numTel : String
+#}
+#
+#type Query {
+#    """ he4y affichage o traja3 liste ktr bin []"""
+#    getallRendezVous : [rendezVous]
+#    """he4y recherche o traja3 liste """
+#    getRvByLog (ref : Int):[rendezVous]
+#    getLogementByRef (ref : Int)  : logement
+#    """recherche rendezVous par id """
+#    getRendezVousById (id : Int)  : rendezVous
+#}
+#
+#type Mutation {
+#    createLogement( reference : Int , adresse : String) : logement
+#    updateRendezVous(id : Int , date : String , heure : String , numTel : String) : Boolean
+#    createRendezVous (id : Int , date : String , heure: String , numTel : String) : rendezVous
+#}
+#
+#schema {
+#query : Query
+#mutation : Mutation
+#}
+
+type Logement {
+    reference : Int
+    adresse :String
+    delegation : String
+    gouvernorat :String
+    type : Type
+    description : String
+    prix :Float
+}
+
+enum Type {
+    Studio
+    Appartement
+    Villa
+    EtageVilla
+}
+type RendezVous {
+    id :Int
+    date: String
+    heure :String
+    logement : Logement
+    numTel :String
+}
+
+type Query {
+    getallrendezVous: [RendezVous]
+    allRendezVous: [RendezVous]
+    getLogementByRef(reference: Int): Logement
+    getRendezVousbuId(id: Int): RendezVous
+}
+type Mutation {
+    createLogement(reference: Int, adresse: String): Logement
+    updateRendezVous(id: Int, date: String, heure: String, numTel: String): Boolean
+    createRendeVous(id: Int, date: String, heure: String, refLog: Int, num: String): RendezVous
+}
+schema  {
+    query: Query
+    mutation: Mutation
+}
